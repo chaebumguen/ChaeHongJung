@@ -1,12 +1,36 @@
-# ChaeHongJung
+#소개
+
+바삐 사는 현대인들의 식습관은 어느새 건강을 위협하고 있습니다.
+저희 뭐먹을래 서비스는 과한 칼로리, 나트륨&칼륨의 균형 붕괴 등의 문제를 해결해 줍니다.
+정보의 바다에서 양질의 정보를 얻기는 굉장히 힘든 일입니다.
+영양 전문 코치가 분석하여 제안하는 칼로리별 음식 추천 서비스입니다.
+
+메인 서버는 파이썬으로 동작하며 데이터베이스는 MySQL을 사용합니다.
+MySQL에서 칼로리별로 음식을 나누고 영양소 균형에 맞는 음식을 필터링한 후 사용자에게 제공됩니다.
+
+사용자의 선택에 기반한 협업 필터링 알고리즘을 사용합니다
+
+Dependencies
+OS - Windows 10 Education 20H2
+MySQL - workbench 8.0
+atom - 1.58.0
+
+#설치 방법
 
 
-# npm install express -save
-# npm install body-parser --save
-# npm install mongoose
-# npm install nodemon --save-dev
-# npm install bcrypt --save
-# npm install jsonwebtoken --save
-# npm install cookie-parser --save
-# client : npx react-create-app
-# npm install concurrently
+
+#의존성
+
+python 3.x
+
+#사용(실행) 방법
+
+
+
+#라이센스
+
+연구, 비영리 사업 목적에 해당하는 경우, 본 프로젝트를 자유롭게 사용할 수 있습니다.
+
+#연락처
+
+bk_chae@naver.com
