@@ -6,3 +6,4 @@
 # npm install mongoose
 # npm install nodemon --save-dev
 # npm install bcrypt --save
+# npm install jsonwebtoken --save
