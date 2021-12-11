@@ -41,17 +41,17 @@ userSchema.pre('save', function(next){
     if(user.isModified('password')) {
     // 비밀번호 암호화
     bcrypt.genSalt(saltRounds, function(err, salt) {
-        if(err) return next(err)
+        if(err) return next(err);
         bcrypt.hash(user.password, salt, function(err, hash) {
             if(err) return next(err)
-            user.password = hash
-            next()
-        })
-    })
+            user.password = hash;
+            next();
+        });
+    });
     } else {
-        next()
+        next();
     }
-})
+});
 
 userSchema.methods.comparePassword= function(plainPassword,cb){
     //평문 비밀번호와 데이터베이스에 있는 암호화된 비밀번호 같은지 체크
@@ -70,10 +70,10 @@ userSchema.methods.generateToken= function(cb){
     
     user.token=token;
     user.save(function(err,user){
-        if(err)return cb(err)
-        cb(null,user)
-    })
-}
+        if(err)return cb(err);
+        cb(null,user);
+    });
+};
 
 userSchema.statics.findByToken = function(token, cb) {
     var user = this;
@@ -86,9 +86,9 @@ userSchema.statics.findByToken = function(token, cb) {
         user.findOne({"_id": decoded, "token": token}, function(err,user){
             if(err) return cb(err);
             cb(null,user)
-        })
-    })
-}
-const User = mongoose.model('User', userSchema)
+        });
+    });
+};
+const User = mongoose.model('User', userSchema);
 
-module.exports = { User }
+module.exports = { User };
