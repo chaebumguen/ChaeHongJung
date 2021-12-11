@@ -4,7 +4,7 @@ const app = express()
 const port = 5000
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const { auth } = require('./middleware/auth');
+const { auth } = require("./middleware/auth");
 const { User } = require("./models/User");
 
 
@@ -29,7 +29,7 @@ mongoose.connect('mongodb+srv://ghdrlf:1234@chae.lnozb.mongodb.net/myFirstDataba
 app.get('/', (req,res) => res.send('Hello World'))
 
 
-app.post('/api/user/register', (req,res) => {
+app.post('/api/users/register', (req,res) => {
     //회원 가입시 필요한 정보들을 클라이언트에서 가져오면, 그것들을 데이터 베이스에 넣어주는 코드
 
     const user = new User(req.body)
@@ -44,7 +44,7 @@ app.post('/api/user/register', (req,res) => {
 })
 
 
-app.post('/api/user/login', (req,res) => {
+app.post('/api/users/login', (req,res) => {
     //요청된 이메일을 데이터베이스에서 있는지 찾는다.
     User.findOne({ email:req.body.email }, (err,user) => {
         if(!user) {
@@ -73,14 +73,31 @@ app.post('/api/user/login', (req,res) => {
 })
 })
 //auth : 권한에 맞는 페이지에만 접근하게 해줌
-app.get('/api/user/auth', auth, (req,res) => {
-
+// 이것을 이용해서, 데이터베이스에서 유저의 정보를 받아볼 수 있음.
+app.get('/api/users/auth',auth,(req,res)=>{
+    
     res.status(200).json({
-        _id: req.user._id,
-        isAdmin: req.user.role ===0 ? false : true,
-        
+      _id:req.user._id,
+      isAdmin:req.user.role===0?false:true,//0이면 일반유저
+      isAuth:true,
+      email:req.use.email,
+      name:req.user.name,
+      lastname:req.user.lastname,
+      role:req.user.role,
+      image:req.user.image,
     })
+  })
+//logout 기능
+app.get('/api/users/logout', auth, (req,res) => {
 
+    User.findOneAndUpdate({ _id: req.user._id},
+        { token : ""},
+        (err, user) => {
+            if(err) return res.json({ sucess: false, err});
+            return res.status(200).send({
+                success: true
+            })
+        })
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
