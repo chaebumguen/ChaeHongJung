@@ -10,13 +10,11 @@ MySQL에서 칼로리별로 음식을 나누고 영양소 균형에 맞는 음�
 
 사용자의 선택에 기반한 협업 필터링 알고리즘을 사용합니다
 
-Dependencies
+#Dependencies
+
 OS - Windows 10 Education 20H2
 MySQL - workbench 8.0
 atom - 1.58.0
-
-#의존성
-
 python 3.x
 
 #라이센스
